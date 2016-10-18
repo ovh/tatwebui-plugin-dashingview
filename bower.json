@@ -1,0 +1,24 @@
+{
+  "name": "tatwebui-plugin-dashingview",
+  "version": "0.0.1",
+  "authors": [
+    "Yvonnick Esnault <yvonnick.esnault@corp.ovh.com>"
+  ],
+  "description": "Standard View",
+  "tatwebui-plugin": [
+    "dashingview/list/dashingview-list.directive.js",
+    "dashingview/list/dashingview-list.controller.js",
+    "dashingview/list/dashingview-list.route.js"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,195 @@
+@import "../../../../bower_components/lesshat/build/lesshat-prefixed.less";
+@import "../../../../bower_components/lesshat/build/lesshat.less";
+@import "../../../../src/app/styles/constants.less";
+
+.tat-dashingview {
+  background: #161D23;
+  height: 1500px;
+  .widget {
+    text-align: center;
+    width: 19%;
+    height:220px;
+    position: relative;
+    display: inline-block;
+    float:left;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    margin: 2px;
+    div.boxmiddle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left:10px;
+      margin-right:10px;
+    }
+    h1.dashvalue {
+      font-size: 76px;
+      font-weight: 700;
+      bottom: 20px;
+      position: relative;
+    }
+    span.datevalue {
+      word-wrap: break-word;
+      position: static;
+      top: 0px;
+      text-align: right!important;
+      padding-left: 10px;
+      padding-bottom: 10px;
+      float:left;
+      margin-top: -5px;
+    }
+    span.servicevalue {
+      word-wrap: break-word;
+      position: static;
+      top: 0px;
+      text-align: right!important;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      float:right;
+      margin-top: -5px;
+    }
+    .progress {
+        background-color: #edf1f2;
+        border-radius: 0;
+        margin-bottom: 0;
+        position: relative;
+        height: 40px;
+        border: 1px solid grey;
+    }
+    .progress .progress-bar {
+        height: 40px;
+        font-size: 16px;
+        line-height: 40px;
+        overflow: hidden;
+        position: absolute;
+    }
+    .progress-loading {
+        width: 100%;
+        transition: opacity 0.6s ease 0s;
+        position: absolute;
+    }
+    .progress-loading-fixed{
+        z-index: 300;
+        position: fixed;
+        top: 0;
+    }
+    .progress-loading .empty-bar, .progress-loading .full-bar{
+        opacity: 0;
+    }
+
+    .progress-xxs {
+        height: 2px;
+    }
+
+    .progress-xs {
+        height: 6px;
+    }
+
+    .progress-sm {
+        height: 14px;
+    }
+
+    .progress-sm .progress-bar {
+        font-size: 14px;
+        line-height: 1em;
+    }
+
+    .progress,
+    .progress-bar {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .progress-bar-primary {
+        background-color: #7266ba;
+    }
+
+    .progress-bar-info {
+        background-color: #23b7e5;
+    }
+
+    .progress-bar-success {
+        background-color: #27c24c;
+    }
+
+    .progress-bar-warning {
+        background-color: #fad733;
+    }
+
+    .progress-bar-danger {
+        background-color: #f05050;
+    }
+
+    .progress-bar-black {
+        background-color: #1c2b36;
+    }
+
+    .progress-bar-white {
+        background-color: #fff;
+    }
+
+    .progress.right .progress-bar {
+        right: 0;
+    }
+    .progress.vertical {
+        float: left;
+        height: 100px;
+        margin-right: 40px;
+        width: 40px;
+        left: 40%;
+    }
+    .progress.vertical.bottom {
+        position: relative;
+    }
+    .progress.vertical .progress-bar {
+        height: 0;
+        transition: height 0.6s ease 0s;
+        width: 100%;
+    }
+    .progress.vertical.bottom .progress-bar {
+        bottom: 0;
+        position: absolute;
+    }
+    .full-bar > .progress-bar{
+        background-color:#27c24c;
+        transition: background-color 0.6s ease 0s;
+    }
+
+    .dg {
+        display: inline-block;
+        width: 140px;
+    }
+
+    .dialgauge-value {
+        font-size: 22px;
+        font-weight: 200;
+    }
+
+    .dialgauge-unit {
+        font-size: 12px;
+        stroke: green;
+        fill: pink;
+        font-weight: 100;
+    }
+
+    .dialgauge-title {
+        font-size: 12px;
+        stroke: green;
+        fill: pink;
+        font-weight: 100;
+    }
+
+    .dg1 {
+        margin: 0 auto;
+        width: 150px;
+        display: inline-block;
+    }
+
+    .dg1 .dialgauge-value {
+        font-size: 30px;
+        font-weight: 400;
+        stroke: grey;
+        fill: grey;
+    }
+  }
+}
