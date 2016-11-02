@@ -293,9 +293,9 @@ angular.module('TatUi')
           } else if (labelText.indexOf("border-color") == 0) {
             message.style += "border-color:" + labelText.substring(13) + ";";
           } else if (labelText.indexOf("title-font-size") == 0) {
-            message.styleTitle += "font-size:" + labelText.substring(10) + ";";
+            message.styleTitle += "font-size:" + labelText.substring(16) + ";";
           } else if (labelText.indexOf("value-font-size") == 0) {
-            message.styleValue += "font-size:" + labelText.substring(10) + ";";
+            message.styleValue += "font-size:" + labelText.substring(16) + ";";
           } else if (labelText.indexOf("color") == 0) {
             message.style += "color:" + label.color + ";";
           } else if (labelText.indexOf("height:") == 0) {
