@@ -358,13 +358,20 @@ angular.module('TatUi')
             for (var k = 0; k < opts.length; k++) {
               var idx = opts[k].indexOf(":");
               if (idx > 0) {
-                var value = opts[k].substring(idx+1,opts[k].length).trim();
+                var value = opts[k].substring(idx+1, opts[k].length).trim();
+                var attr = opts[k].substring(0, idx);
                 if (self.isInt(value)) {
-                  options[opts[k].substring(0,idx)] = parseInt(value)
+                  if (attr === "axisY.offset") {
+                    options.axisY = { offset: parseInt(value) };
+                  } else if (attr === "axisX.offset") {
+                    options.axisX = { offset: parseInt(value) };
+                  } else {
+                    options[attr] = parseInt(value);
+                  }
                 } else if (value === 'true' || value === 'false') {
-                  options[opts[k].substring(0,idx)] = (value === "true");
+                  options[attr] = (value === "true");
                 } else {
-                  options[opts[k].substring(0,idx)] = value
+                  options[attr] = value;
                 }
               }
             }
