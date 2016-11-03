@@ -162,7 +162,9 @@ angular.module('TatUi')
       var filterAttrs = {
         topic: self.topic,
         treeView: 'notree',
-        onlyMsgRoot: true
+        onlyMsgRoot: true,
+        limit: self.data.count,
+        skip: self.data.skip
       };
       if (!TatFilter.containsDateFilter) {
         filterAttrs.dateMinUpdate = self.data.intervalTimeStamp;
