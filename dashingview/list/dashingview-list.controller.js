@@ -262,6 +262,7 @@ angular.module('TatUi')
       message.widgetMaxValue = "";
       message.widgetValue = "";
       message.widgetValueText = "";
+      message.widgetOptions = {};
       message.valueMsg = "";
       message.url = "";
       message.textClean = message.text.replace("#monitoring", "").trim();
@@ -356,7 +357,6 @@ angular.module('TatUi')
             var sep = ",";
             if (labelText.substring(15).indexOf(",") < 0) sep = " ";
             var opts = labelText.substring(15).split(sep);
-            var options = {};
             for (var k = 0; k < opts.length; k++) {
               var idx = opts[k].indexOf(":");
               if (idx > 0) {
@@ -364,26 +364,34 @@ angular.module('TatUi')
                 var attr = opts[k].substring(0, idx);
                 if (self.isInt(value)) {
                   if (attr === "axisY.offset") {
-                    options.axisY = { offset: parseInt(value) };
+                    message.widgetOptions.axisY = { offset: parseInt(value) };
                   } else if (attr === "axisX.offset") {
-                    options.axisX = { offset: parseInt(value) };
+                    message.widgetOptions.axisX = { offset: parseInt(value) };
                   } else {
-                    options[attr] = parseInt(value);
+                    message.widgetOptions[attr] = parseInt(value);
                   }
                 } else if (value === 'true' || value === 'false') {
-                  options[attr] = (value === "true");
+                  message.widgetOptions[attr] = (value === "true");
                 } else {
-                  options[attr] = value;
+                  message.widgetOptions[attr] = value;
                 }
               }
             }
-            message.widgetOptions = options;
           } else if (labelText.indexOf("widget-data-labels:") == 0) {
             var sep = ",";
             if (labelText.substring(19).indexOf(",") < 0) sep = " ";
             var serie = labelText.substring(19).split(sep);
             self.initWidgetData(message);
             message.widgetData.labels = serie;
+          } else if (labelText.indexOf("widget-data-legendNames:") == 0) {
+            var sep = ",";
+            if (labelText.substring(24).indexOf(",") < 0) sep = " ";
+            var serie = labelText.substring(24).split(sep);
+            message.widgetOptions.plugins = [
+                Chartist.plugins.legend({
+                    legendNames: serie,
+                })
+            ];
           } else if (labelText.indexOf("widget-data-serie:") == 0) {
             var sep = ",";
             if (labelText.substring(18).indexOf(",") < 0) sep = " ";
