@@ -262,7 +262,9 @@ angular.module('TatUi')
       message.widgetMaxValue = "";
       message.widgetValue = "";
       message.widgetValueText = "";
-      message.widgetOptions = {};
+      message.widgetOptions = {
+        legend: []
+      };
       message.valueMsg = "";
       message.url = "";
       message.textClean = message.text.replace("#monitoring", "").trim();
@@ -383,15 +385,6 @@ angular.module('TatUi')
             var serie = labelText.substring(19).split(sep);
             self.initWidgetData(message);
             message.widgetData.labels = serie;
-          } else if (labelText.indexOf("widget-data-legendNames:") == 0) {
-            var sep = ",";
-            if (labelText.substring(24).indexOf(",") < 0) sep = " ";
-            var serie = labelText.substring(24).split(sep);
-            message.widgetOptions.plugins = [
-                Chartist.plugins.legend({
-                    legendNames: serie,
-                })
-            ];
           } else if (labelText.indexOf("widget-data-serie:") == 0) {
             var sep = ",";
             if (labelText.substring(18).indexOf(",") < 0) sep = " ";
@@ -399,9 +392,19 @@ angular.module('TatUi')
             self.initWidgetData(message);
             message.widgetData.series = serie;
           } else if (labelText.indexOf("widget-data-series:") == 0) {
+
             var sep = ",";
-            if (labelText.substring(19).indexOf(",") < 0) sep = " ";
-            var serie = labelText.substring(19).split(sep);
+            var legend = "";
+            var n = labelText.indexOf(":", 19);
+
+            if (n > 0) {
+              legend = labelText.substring(19, n);
+            } else {
+              n = 19;
+            }
+
+            if (labelText.substring(n).indexOf(",") < 0) sep = " ";
+            var serie = labelText.substring(n).split(sep);
             var serieSanitize = [];
             for (var idxValue = 0; idxValue < serie.length; idxValue++) {
               var v = serie[idxValue].trim();
@@ -413,6 +416,10 @@ angular.module('TatUi')
             }
             self.initWidgetData(message);
             message.widgetData.series.push(serie);
+
+            if (legend !== "") {
+              message.widgetOptions.legend.push(legend);
+            }
           }
         }
 
@@ -451,6 +458,14 @@ angular.module('TatUi')
         if (message.orderBox === "") {
           message.orderBox = 2;
         }
+      }
+
+      if (message.widgetOptions.legend != null && message.widgetOptions.legend.length > 0) {
+        message.widgetOptions.plugins = [
+            Chartist.plugins.legend({
+                legendNames: message.widgetOptions.legend
+            })
+        ];
       }
     }
 
