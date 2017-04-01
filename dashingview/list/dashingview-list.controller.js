@@ -149,6 +149,7 @@ angular.module('TatUi')
         console.log("messages list already in refresh...");
         return;
       }
+      $rootScope.$broadcast("sidebar-hide");
       self.loading = true;
       self.currentDate = self.getCurrentDate();
       var filterAttrs = {
@@ -204,9 +205,7 @@ angular.module('TatUi')
      */
     self.init = function() {
       self.data.initialLoading = true;
-      if (!angular.isDefined($cookieStore.get("showSidebar")) || $cookieStore.get("showSidebar") == true) {
-        $rootScope.$broadcast("sidebar-toggle");
-      }
+      $rootScope.$broadcast("sidebar-hide");
       TatTopic.computeTopic(self.topic, self.beginTimer);
     };
 
