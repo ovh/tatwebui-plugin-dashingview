@@ -246,7 +246,6 @@ angular.module('TatUi')
     self.computeStatus = function(message) {
       message.bar = progressBarManager();
       message.bar.clear();
-      message.style = "";
       message.widget = "";
       message.orderBox = "";
       message.widgetMinValue = "";
@@ -280,29 +279,8 @@ angular.module('TatUi')
         for (var i = 0; i < message.labels.length; i++) {
           var label = message.labels[i];
           var labelText = message.labels[i].text;
-          if (labelText.indexOf("bg-color") == 0) {
-            message.style += "background-color:" + label.color + ";";
-          } else if (labelText.indexOf("border-width") == 0) {
-            message.style += "border-width:" + labelText.substring(13) + ";";
-          } else if (labelText.indexOf("border-style") == 0) {
-            message.style += "border-style:" + labelText.substring(13) + ";";
-          } else if (labelText.indexOf("border-color") == 0) {
-            message.style += "border-color:" + labelText.substring(13) + ";";
-          } else if (labelText.indexOf("title-font-size") == 0) {
-            message.styleTitle += "font-size:" + labelText.substring(16) + ";";
-          } else if (labelText.indexOf("value-font-size") == 0) {
-            message.styleValue += "font-size:" + labelText.substring(16) + ";";
-          } else if (labelText.indexOf("color") == 0) {
-            message.style += "color:" + label.color + ";";
-          } else if (labelText.indexOf("height:") == 0) {
-            message.style += "height:" + labelText.substring(7) + ";";
-          } else if (labelText.indexOf("width:") == 0) {
-            message.style += "width:" + labelText.substring(6) + ";";
-          } else if (labelText.indexOf("hide-bottom") == 0) {
-            message.styleBottom = "display:none";
-          } else if (labelText.indexOf("url:") == 0) {
+          if (labelText.indexOf("url:") == 0) {
             message.url = labelText.substring(4);
-            message.style += "cursor:pointer;";
           } else if (labelText.indexOf("value:") == 0) {
             message.valueMsg = labelText.substring(6);
             if (self.isInt(message.valueMsg)) {
@@ -420,32 +398,20 @@ angular.module('TatUi')
             if (message.orderBox === "") {
               message.orderBox = 1;
             }
-            if (message.style === "") {
-              message.statusCss = 'btn-danger';
-            }
             return;
           } else if (l.text === 'UP' || l.text === 'done') {
             if (message.orderBox === "") {
               message.orderBox = 3;
-            }
-            if (message.style === "") {
-              message.statusCss = 'btn-success';
             }
             return;
           } else if (l.text === 'WARN') {
             if (message.orderBox === "") {
               message.orderBox = 2;
             }
-            if (message.style === "") {
-              message.statusCss = 'btn-warning';
-            }
             return;
           }
         }
 
-        if (message.style === "") {
-          message.statusCss = 'btn-warning';
-        }
         if (message.orderBox === "") {
           message.orderBox = 2;
         }

@@ -8,11 +8,11 @@
     <message-load is-init-loading="ctrl.data.initialLoading"></message-load>
 
     <div class="row">
-      <div ng-repeat="msg in ctrl.data.messages | toArray | orderBy:'orderBox' track by $index"
-       class="widget widget-text {{msg.statusCss}}" style="{{msg.style}}" ng-click="ctrl.goToURL(msg.url)">
+      <div id="message_{{:: $index}}" ng-repeat="msg in ctrl.data.messages | toArray | orderBy:'orderBox' track by $index"
+       class="widget widget-text" dashing-css-parser="msg.labels" ng-click="ctrl.goToURL(msg.url)">
 
         <div ng-if="msg.item && msg.item !== ''" style="height:45px!important;">
-          <h3  style="{{msg.styleTitle}}" style="font-weight:bold;word-wrap: break-word">{{msg.item}}</h3>
+          <h3 class="dashtitle">{{msg.item}}</h3>
         </div>
 
         <div class="boxmiddle">
@@ -28,13 +28,13 @@
             bar-class="{{msg.widgetClass}}"
             ng-model="msg.widgetValue">{{msg.widgetValueText}}% </tek-progress-bar>
 
-          <h1 ng-if="msg.valueMsg !== ''" class="dashvalue" style="{{msg.styleValue}}">{{msg.valueMsg}}</h1>
+          <h1 ng-if="msg.valueMsg !== ''" class="dashvalue">{{msg.valueMsg}}</h1>
           <span ng-show="msg.textClean !== ''">{{msg.textClean}}</span>
         </div>
-        <div style="position: absolute;bottom: 0;left: 0;{{msg.styleBottom}}">
+        <div class="dashbottom" style="position: absolute;bottom: 0;left: 0;">
           <span class="datevalue" am-time-ago="msg.dateUpdate * 1000"></span>
         </div>
-        <div style="position: absolute;bottom: 0;right: 0;{{msg.styleBottom}}">
+        <div class="dashbottom" style="position: absolute;bottom: 0;right: 0;">
           <span ng-show="msg.service != ''" class="servicevalue"  style="bottom:0px">{{msg.service}}</span>
         </div>
       </div>
