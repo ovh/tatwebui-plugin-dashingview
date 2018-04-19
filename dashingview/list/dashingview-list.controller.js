@@ -32,7 +32,7 @@ angular.module('TatUi')
     self.data = {
       messages: [],
       requestFrequency: 5000,
-      count: 150,
+      count: 200,
       skip: 0,
       displayMore: true,
       treeView: "notree",
